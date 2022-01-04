@@ -1,0 +1,22 @@
+<form autocomplete="off">
+    <label>Task:</label><br>
+    <input type="text" name="task" [(ngModel)]="inputTask">
+    <button [disabled]="!inputTask" (click)="createTask()">Add</button>
+</form>
+<ul>
+    <!-- add class to the tag -->
+    <!-- ngStyle must be deleted -->
+    <li
+    *ngFor="let task of toDoList"
+    [ngStyle]="{backgroundColor: color}">
+    <!-- explain why are we using pipes here? -->
+        {{task | json}}
+        <button type="submit" (click)="changeColor()">
+            <fa-icon [icon]="faClipboardCheck"></fa-icon>
+        </button>
+        <!-- put task in argument instead of index -->
+        <button type="submit" (click)="removeTask(task)">
+            <fa-icon [icon]="faTrashAlt"></fa-icon>
+        </button>
+    </li>
+</ul>
